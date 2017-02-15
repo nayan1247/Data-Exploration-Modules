@@ -1,7 +1,7 @@
 library(pacman)
 
 #Load Libraries
-pacman::p_load(data.table)
+library(data.table)
 
 #Functions
 meanNA <- function(x)
@@ -77,8 +77,6 @@ generateSummary<-function(df,threshold)
     }
   }
   
-  #str(df.dt)
-  
   #Basic Summary Metrics
   names<-names(df.dt)
   missingVal<-sapply(df.dt, function(x) sum(is.na(x)))
@@ -100,7 +98,8 @@ generateSummary<-function(df,threshold)
 }
 
 #Test meh function
-a<-generateSummary(mtcars,5)
+mtcarsDT<-as.data.table(mtcars)
+a<-generateSummary(mtcarsDT,5)
 b<-generateSummary(airquality,5)
 
 View(b)
