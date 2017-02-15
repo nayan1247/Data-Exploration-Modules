@@ -62,6 +62,10 @@ sdNA <- function(x)
   }
 }
 
+uniqueValuesNA <- function(x){
+  return(length(unique(x)))
+}
+
 
 #Create a Summary of the Data Set
 generateSummary<-function(df,threshold)
@@ -86,14 +90,15 @@ generateSummary<-function(df,threshold)
   minVal<-sapply(df.dt, function(x) minNA(x))
   sdVal<-sapply(df.dt, function(x) sdNA(x))
   numLevels<-sapply(df.dt, function(x) levelsCat(x))
+  uniqueValues<-sapply(df.dt,function(x) uniqueValuesNA(x))
   
   
   #finalDF
   finalSummary<-data.frame()
-  finalSummary<-rbind(finalSummary,typeVar,missingVal,meanVar,maxVal,minVal,sdVal,numLevels)
+  finalSummary<-rbind(finalSummary,typeVar,missingVal,meanVar,maxVal,minVal,sdVal,numLevels,uniqueValues)
   names(finalSummary)<-names
   
-  row.names(finalSummary)<-c("typeVar","missingVal","meanVar","maxVal","minVal","sdVal","numLevels")
+  row.names(finalSummary)<-c("typeVar","missingVal","meanVar","maxVal","minVal","sdVal","numLevels","uniqueValues")
   t(finalSummary)
 }
 
