@@ -3,7 +3,9 @@ library(pacman)
 #Load Libraries
 library(data.table)
 
-#Functions
+#----------------------- Functions to implement the required functionality
+
+#Mean of the Continuous Variable after removing NA
 meanNA <- function(x)
 {
   if(class(x)=="numeric" | class(x)=="integer" )
@@ -15,7 +17,7 @@ meanNA <- function(x)
   }
 }
 
-
+# Number of levels for the categorical variable
 levelsCat <- function(x)
 {
   if(class(x)=="factor")
@@ -27,7 +29,7 @@ levelsCat <- function(x)
   }
 }
 
-
+#Max of the Continuous Variable after removing NA
 maxNA <- function(x)
 {
   if(class(x)=="numeric" | class(x)=="integer")
@@ -39,6 +41,7 @@ maxNA <- function(x)
   }
 }
 
+#Min of the Continuous Variable after removing NA
 minNA <- function(x)
 {
   if(class(x)=="numeric" | class(x)=="integer")
@@ -50,7 +53,7 @@ minNA <- function(x)
   }
 }
 
-
+#Standard Deviation of the Continuous Variable after removing NA
 sdNA <- function(x)
 {
   if(class(x)=="numeric" | class(x)=="integer")
@@ -62,12 +65,13 @@ sdNA <- function(x)
   }
 }
 
+#Unique Values of the variable
 uniqueValuesNA <- function(x){
   return(length(unique(x)))
 }
 
 
-#Create a Summary of the Data Set
+#------------------Create a Summary of the Data Set
 generateSummary<-function(df,threshold)
 {
   #Convert to Categorical (factor) if # of levels less than threshold
@@ -102,7 +106,7 @@ generateSummary<-function(df,threshold)
   t(finalSummary)
 }
 
-#Test meh function
+#----------------------------Test meh function
 mtcarsDT<-as.data.table(mtcars)
 a<-generateSummary(mtcarsDT,5)
 b<-generateSummary(airquality,5)
